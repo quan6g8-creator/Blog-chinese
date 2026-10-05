@@ -1,0 +1,167 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Hiệu ứng 3D - 学中文">
+  <div id="canvas-container"></div>
+  
+  <section class="hero-3d">
+    <h1 class="hero-title-3d">📚 学中文</h1>
+    <p class="hero-subtitle-3d">Blog học tiếng Trung cho người mới bắt đầu</p>
+    <div class="hero-particles" id="particles"></div>
+  </section>
+
+  <section class="content-3d">
+    <h2 style="margin-bottom:1rem;">Bài viết mới nhất</h2>
+    <slot />
+  </section>
+
+  <script>
+    import * as THREE from 'three';
+
+    // Scene setup
+    const container = document.getElementById('canvas-container');
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    container?.appendChild(renderer.domElement);
+
+    // Particles
+    const particlesGeometry = new THREE.BufferGeometry();
+    const particlesCount = 500;
+    const posArray = new Float32Array(particlesCount * 3);
+    
+    for (let i = 0; i < particlesCount * 3; i++) {
+      posArray[i] = (Math.random() - 0.5) * 10;
+    }
+    
+    particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+    
+    const particlesMaterial = new THREE.PointsMaterial({
+      size: 0.02,
+      color: 0xc41e3a,
+      transparent: true,
+      opacity: 0.8,
+    });
+    
+    const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+    scene.add(particlesMesh);
+
+    // Floating shapes
+    const geometry = new THREE.IcosahedronGeometry(0.5, 0);
+    const material = new THREE.MeshBasicMaterial({ 
+      color: 0x0066cc, 
+      wireframe: true,
+      transparent: true,
+      opacity: 0.3
+    });
+    
+    const shapes: THREE.Mesh[] = [];
+    for (let i = 0; i < 5; i++) {
+      const mesh = new THREE.Mesh(geometry, material.clone());
+      mesh.position.set(
+        (Math.random() - 0.5) * 8,
+        (Math.random() - 0.5) * 8,
+        (Math.random() - 0.5) * 4
+      );
+      mesh.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, 0);
+      scene.add(mesh);
+      shapes.push(mesh);
+    }
+
+    camera.position.z = 5;
+
+    // Mouse parallax
+    let mouseX = 0;
+    let mouseY = 0;
+    
+    document.addEventListener('mousemove', (event) => {
+      mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+      mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+    });
+
+    // Animation
+    const clock = new THREE.Clock();
+    
+    function animate() {
+      const elapsedTime = clock.getElapsedTime();
+      
+      particlesMesh.rotation.y = elapsedTime * 0.05;
+      particlesMesh.rotation.x = elapsedTime * 0.03;
+      
+      shapes.forEach((shape, i) => {
+        shape.rotation.x += 0.005;
+        shape.rotation.y += 0.008;
+        shape.position.y += Math.sin(elapsedTime + i) * 0.002;
+      });
+      
+      camera.position.x += (mouseX * 0.5 - camera.position.x) * 0.05;
+      camera.position.y += (mouseY * 0.5 - camera.position.y) * 0.05;
+      camera.lookAt(scene.position);
+      
+      renderer.render(scene, camera);
+      requestAnimationFrame(animate);
+    }
+    
+    animate();
+
+    // Resize handler
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+  </script>
+
+  <style>
+    #canvas-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+    }
+    
+    .hero-3d {
+      text-align: center;
+      padding: 4rem 1.5rem;
+      position: relative;
+    }
+    
+    .hero-title-3d {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(90deg, #c41e3a, #0066cc, #c41e3a);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 3s linear infinite;
+    }
+    
+    .hero-subtitle-3d {
+      color: var(--muted);
+      font-size: 1.25rem;
+    }
+    
+    .content-3d {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+    
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+    
+    @media (max-width: 600px) {
+      .hero-title-3d { font-size: 2rem; }
+    }
+  </style>
+</BaseLayout>

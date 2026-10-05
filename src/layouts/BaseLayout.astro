@@ -1,0 +1,36 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+const { title, description = 'Blog học tiếng Trung' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <link rel="stylesheet" href="/src/styles/global.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav">
+        <a href="/" class="logo">📚 学中文</a>
+        <ul class="nav-links">
+          <li><a href="/">Trang chủ</a></li>
+          <li><a href="/blog">Bài viết</a></li>
+          <li><a href="/about">Giới thiệu</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <p>&copy; 2026 学中文 Blog. Học tiếng Trung mỗi ngày.</p>
+    </footer>
+  </body>
+</html>

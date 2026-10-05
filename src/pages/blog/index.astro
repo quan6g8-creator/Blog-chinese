@@ -1,0 +1,26 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const posts = (await getCollection('blog'))
+  .filter(p => !p.data.draft)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<BaseLayout title="Bài viết - 学中文">
+  <h1 style="margin-bottom:1.5rem;">📝 Tất cả bài viết</h1>
+  {posts.map(post => (
+    <article class="post-card">
+      <h2><a href={`/blog/${post.id.replace(/\.md$/, '')}`}>{post.data.title}</a></h2>
+      <div class="post-meta">
+        {post.data.pubDate.toLocaleDateString('vi-VN', { year: 'numeric', month: 'long', day: 'numeric' })}
+      </div>
+      <p>{post.data.description}</p>
+      {post.data.tags.length > 0 && (
+        <div class="tags">
+          {post.data.tags.map(tag => <span class="tag">{tag}</span>)}
+        </div>
+      )}
+    </article>
+  ))}
+</BaseLayout>

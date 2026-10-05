@@ -72,6 +72,9 @@ main {
 .post-card h2 { font-size: 1.25rem; margin-bottom: 0.5rem; }
 .post-card h2 a { color: var(--fg); }
 .post-card h2 a:hover { color: var(--accent); }
+.post-title { color: #0066cc !important; }
+.post-title a { color: #0066cc !important; }
+.post-title a:hover { color: #004499 !important; }
 .post-meta { color: var(--muted); font-size: 0.85rem; margin-bottom: 0.75rem; }
 .post-card p { color: var(--muted); font-size: 0.95rem; }
 .tags { display: flex; gap: 0.5rem; margin-top: 0.75rem; flex-wrap: wrap; }

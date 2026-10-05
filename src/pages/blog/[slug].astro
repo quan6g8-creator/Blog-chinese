@@ -17,7 +17,7 @@ const { Content } = await render(post);
 
 <BaseLayout title={`${post.data.title} - 学中文`}>
   <article class="post-content">
-    <h1>{post.data.title}</h1>
+    <h1 class="post-title">{post.data.title}</h1>
     <div class="post-meta">
       {post.data.pubDate.toLocaleDateString('vi-VN', { year: 'numeric', month: 'long', day: 'numeric' })}
       {post.data.tags.length > 0 && (

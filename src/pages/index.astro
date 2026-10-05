@@ -17,7 +17,7 @@ const posts = (await getCollection('blog'))
     <h2 style="margin-bottom:1rem;">Bài viết mới nhất</h2>
     {posts.map(post => (
       <article class="post-card">
-        <h2><a href={`/blog/${post.id.replace(/\.md$/, '')}`}>{post.data.title}</a></h2>
+        <h2 class="post-title"><a href={`/blog/${post.id.replace(/\.md$/, '')}`}>{post.data.title}</a></h2>
         <div class="post-meta">
           {post.data.pubDate.toLocaleDateString('vi-VN', { year: 'numeric', month: 'long', day: 'numeric' })}
         </div>

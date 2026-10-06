@@ -444,6 +444,10 @@ h1,h2,h3{ font-weight:400; margin:0; letter-spacing:-.005em; }
 .foot-base{ display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap;
   margin-top:clamp(38px,6vh,74px); padding-top:20px; border-top:1px solid var(--line-soft);
   font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); }
+.foot-creator{ display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap;
+  margin-top:14px; padding-top:14px; border-top:1px solid var(--line-soft);
+  font-size:11px; letter-spacing:.14em; color:var(--bone-dim); }
+.foot-creator .jp{ color:var(--muted); }
 
 /* ============================================================= progress rail */
 .rail{ position:fixed; right:calc(var(--pad) - 4px); top:50%; transform:translateY(-50%); z-index:45;
@@ -1190,6 +1194,11 @@ body[data-layout-footer="b"] .foot-base span:last-child{ text-align:right; }
     <span>© 2026 Kage — Kage no Michi</span>
     <span class="jp">静けさは一つの技である</span>
     <span>WebGL · Onest · Kyoto</span>
+  </div>
+  <div class="foot-creator">
+    <span>Creator: Dinh Minh Quang · 14/04/2006</span>
+    <span class="jp">とても中国語が好きです</span>
+    <span>Rất thích học tiếng Trung</span>
   </div>
 </footer>
 

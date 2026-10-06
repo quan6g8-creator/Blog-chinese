@@ -9,7 +9,7 @@ tags: ["Trung Hoa", "văn hóa", "du lịch", "lịch sử"]
 
 Trung Hoa Quốc (中国 - Zhōngguó) là một trong những nền văn minh lâu đời nhất thế giới, với lịch sử hơn 5000 năm.
 
-![Thành phố Bắc Kinh](https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=800&q=80)
+![Tử Cấm Thành - Bắc Kinh](https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=800&q=80)
 
 ## Lịch sử tóm tắt
 
@@ -54,6 +54,8 @@ Trung Hoa Quốc (中国 - Zhōngguó) là một trong những nền văn minh l
 
 ![Vạn Lý Trường Thành](https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=800&q=80)
 
+![Gói bánh jiǎozi truyền thống](https://images.unsplash.com/photo-1570604127008-f644337cfb8b?w=800&q=80)
+
 **Vạn Lý Trường Thành (长城):**
 - Dài hơn 21.000 km
 - Xây dựng từ thế kỷ 7 TCN
@@ -70,7 +72,7 @@ Trung Hoa Quốc (中国 - Zhōngguó) là một trong những nền văn minh l
 
 ## Du lịch Trung Hoa
 
-<iframe width="100%" height="315" src="https://www.youtube.com/embed/8Qn_spdM5Zg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="100%" height="315" src="https://www.youtube.com/embed/CujySnO2zIM" title="Exploring China: Beijing, Xi'an & Shanghai" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ### Điểm đến phổ biến
 

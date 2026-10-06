@@ -13,7 +13,7 @@ Học tiếng Trung từ con số 0 có thể đáng sợ, nhưng với phương
 
 Đây là bước quan trọng nhất. Pinyin giúp bạn đọc phát âm chính xác.
 
-![Bảng Pinyin tiếng Trung](https://images.unsplash.com/photo-1523731407965-2430cd12f5e4?w=800&q=80)
+![Thư pháp Trung Hoa - người đang tập viết chữ Hán bằng cọ](https://images.unsplash.com/photo-1546638008-efbe0b62c730?w=800&q=80)
 
 > **Mẹo:** Học Pinyin trong 1-2 tuần đầu. Mỗi ngày ôn 15 phút là đủ.
 
@@ -33,7 +33,7 @@ Học tiếng Trung từ con số 0 có thể đáng sợ, nhưng với phương
 
 Nghe là chìa khóa để phát âm chuẩn. Hãy nghe podcast, nhạc, phim tiếng Trung mỗi ngày.
 
-<iframe width="100%" height="315" src="https://www.youtube.com/embed/8Qn_spdM5Zg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="100%" height="315" src="https://www.youtube.com/embed/kRo9S-aeiKM" title="How to start learning Chinese: beginner tips" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ### 4. Nói từ ngày đầu
 

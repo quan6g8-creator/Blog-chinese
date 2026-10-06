@@ -5,6 +5,8 @@ pubDate: 2026-10-02
 tags: ["ngữ pháp", "cơ bản", "cấu trúc câu"]
 ---
 
+![Thư pháp Trung Hoa - tập viết chữ Hán](https://images.unsplash.com/photo-1546638008-efbe0b62c730?w=800&q=80)
+
 ## Cấu trúc câu cơ bản
 
 Tiếng Trung có cấu trúc câu khá đơn giản so với tiếng Việt:
@@ -101,5 +103,7 @@ Trước danh từ, cần có **lượng từ** (classifier).
 > 我不喜欢辣的。
 > Wǒ bù xǐhuān là de.
 > Tôi không thích cay.
+
+<iframe width="100%" height="315" src="https://www.youtube.com/embed/CwqsAY9qvhA" title="Learn Chinese Fundamentals – Lesson 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 > **Mẹo học:** Đừng cố học ngữ pháp quá nhiều cùng lúc. Học một cấu trúc mỗi ngày, dùng nó trong 5-10 câu ví dụ. Sau một tuần bạn sẽ nhớ vĩnh viễn!

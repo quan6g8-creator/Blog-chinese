@@ -5,6 +5,8 @@ pubDate: 2026-10-05
 tags: ["từ vựng", "cơ bản", "chào hỏi"]
 ---
 
+![Học viết chữ Hán](https://images.unsplash.com/photo-1546638008-efbe0b62c730?w=800&q=80)
+
 ## 你好 (Nǐ hǎo) – Xin chào
 
 Từ phổ biến nhất trong tiếng Trung. Dùng để chào hỏi người khác.
@@ -79,5 +81,7 @@ Từ lịch sự dùng trước khi hỏi.
 | 晚上好 | Wǎnshang hǎo | Chào buổi tối |
 | 请问 | Qǐngwèn | Xin hỏi |
 | 名字 | Míngzi | Tên |
+
+<iframe width="100%" height="315" src="https://www.youtube.com/embed/CwqsAY9qvhA" title="Learn Chinese Fundamentals – Lesson 1: Greetings" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 > **Mẹo học:** Hãy thử gõ 10 từ này vào Anki hoặc Quizlet và ôn lại mỗi ngày. Sau một tuần bạn sẽ nhớ vĩnh viễn!

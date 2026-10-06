@@ -9,7 +9,7 @@ tags: ["Trung Hoa", "văn hóa", "du lịch", "lịch sử"]
 
 Trung Hoa Quốc (中国 - Zhōngguó) là một trong những nền văn minh lâu đời nhất thế giới, với lịch sử hơn 5000 năm.
 
-![Tử Cấm Thành - Bắc Kinh](https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=800&q=80)
+![Tử Cấm Thành - Bắc Kinh](/images/forbidden-left.jpg)
 
 ## Lịch sử tóm tắt
 
@@ -52,9 +52,9 @@ Trung Hoa Quốc (中国 - Zhōngguó) là một trong những nền văn minh l
 
 ### 3. Danh lam thắng cảnh
 
-![Vạn Lý Trường Thành](https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=800&q=80)
+![Vạn Lý Trường Thành](/images/forbidden-right.jpg)
 
-![Gói bánh jiǎozi truyền thống](https://images.unsplash.com/photo-1570604127008-f644337cfb8b?w=800&q=80)
+![Gói bánh jiǎozi truyền thống](/images/dumplings-left.jpg)
 
 **Vạn Lý Trường Thành (长城):**
 - Dài hơn 21.000 km

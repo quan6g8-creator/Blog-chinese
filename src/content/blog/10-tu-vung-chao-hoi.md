@@ -5,7 +5,7 @@ pubDate: 2026-10-05
 tags: ["từ vựng", "cơ bản", "chào hỏi"]
 ---
 
-![Học viết chữ Hán](https://images.unsplash.com/photo-1546638008-efbe0b62c730?w=800&q=80)
+![Học viết chữ Hán](/images/calligraphy-left.jpg)
 
 ## 你好 (Nǐ hǎo) – Xin chào
 

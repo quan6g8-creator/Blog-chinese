@@ -5,7 +5,7 @@ pubDate: 2026-10-02
 tags: ["ngữ pháp", "cơ bản", "cấu trúc câu"]
 ---
 
-![Thư pháp Trung Hoa - tập viết chữ Hán](https://images.unsplash.com/photo-1546638008-efbe0b62c730?w=800&q=80)
+![Thư pháp Trung Hoa - tập viết chữ Hán](/images/calligraphy-right.jpg)
 
 ## Cấu trúc câu cơ bản
 

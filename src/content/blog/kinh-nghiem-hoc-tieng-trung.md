@@ -13,7 +13,7 @@ Học tiếng Trung từ con số 0 có thể đáng sợ, nhưng với phương
 
 Đây là bước quan trọng nhất. Pinyin giúp bạn đọc phát âm chính xác.
 
-![Thư pháp Trung Hoa - người đang tập viết chữ Hán bằng cọ](https://images.unsplash.com/photo-1546638008-efbe0b62c730?w=800&q=80)
+![Thư pháp Trung Hoa - người đang tập viết chữ Hán bằng cọ](/images/calligraphy-right.jpg)
 
 > **Mẹo:** Học Pinyin trong 1-2 tuần đầu. Mỗi ngày ôn 15 phút là đủ.
 

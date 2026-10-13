@@ -1,0 +1,142 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = 'Đăng nhập - 学中文';
+---
+
+<BaseLayout title={title}>
+  <section class="auth-section">
+    <div class="auth-card">
+      <h1>🔐 Đăng nhập</h1>
+      <p class="auth-subtitle">Chào mừng bạn quay trở lại!</p>
+
+      <form id="login-form" class="auth-form">
+        <div class="form-group">
+          <label for="username">Tên đăng nhập</label>
+          <input type="text" id="username" name="username" required placeholder="nhập tên đăng nhập" />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Mật khẩu</label>
+          <input type="password" id="password" name="password" required placeholder="nhập mật khẩu" />
+        </div>
+
+        <button type="submit" class="btn-primary">Đăng nhập</button>
+      </form>
+
+      <p class="auth-footer">
+        Chưa có tài khoản? <a href="/register">Đăng ký</a>
+      </p>
+    </div>
+  </section>
+
+  <script>
+    interface User {
+      username: string;
+      email: string;
+      password: string;
+      level: string;
+      createdAt: string;
+    }
+
+    const form = document.getElementById('login-form') as HTMLFormElement;
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const username = (document.getElementById('username') as HTMLInputElement).value.trim();
+      const password = (document.getElementById('password') as HTMLInputElement).value;
+
+      const users: User[] = JSON.parse(localStorage.getItem('blog_users') || '[]');
+      const user = users.find(u => u.username === username && u.password === password);
+
+      if (!user) {
+        alert('Tên đăng nhập hoặc mật khẩu không đúng');
+        return;
+      }
+
+      localStorage.setItem('blog_current_user', JSON.stringify(user));
+      alert('Đăng nhập thành công!');
+      window.location.href = '/dashboard';
+    });
+  </script>
+
+  <style>
+    .auth-section {
+      max-width: 480px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    .auth-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 2rem;
+    }
+
+    .auth-card h1 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .auth-subtitle {
+      color: rgba(255, 255, 255, 0.6);
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.25rem;
+      font-size: 0.875rem;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff;
+      font-size: 1rem;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: #4ecdc4;
+    }
+
+    .btn-primary {
+      width: 100%;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #4ecdc4, #44a08d);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 0.5rem;
+    }
+
+    .btn-primary:hover {
+      opacity: 0.9;
+    }
+
+    .auth-footer {
+      text-align: center;
+      margin-top: 1rem;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .auth-footer a {
+      color: #4ecdc4;
+      text-decoration: none;
+    }
+  </style>
+</BaseLayout>

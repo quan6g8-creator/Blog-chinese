@@ -1,0 +1,175 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = 'Dashboard - 学中文';
+---
+
+<BaseLayout title={title}>
+  <section class="dashboard-section">
+    <div class="dashboard-card">
+      <h1>👥 Đăng ký người dùng</h1>
+      <p class="dashboard-subtitle">Danh sách tài khoản đã tạo trên blog</p>
+
+      <div id="user-count" class="user-count">Đang tải...</div>
+
+      <div class="table-container">
+        <table id="users-table" class="users-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Tên đăng nhập</th>
+              <th>Email</th>
+              <th>Trình độ</th>
+              <th>Ngày đăng ký</th>
+            </tr>
+          </thead>
+          <tbody id="users-tbody">
+            <tr><td colspan="5" class="empty-cell">Chưa có tài khoản nào</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <button id="export-btn" class="btn-secondary">📊 Export CSV</button>
+    </div>
+  </section>
+
+  <script>
+    interface User {
+      username: string;
+      email: string;
+      password: string;
+      level: string;
+      createdAt: string;
+    }
+
+    const levelLabels: Record<string, string> = {
+      beginner: 'Mới bắt đầu',
+      elementary: 'Sơ cấp',
+      intermediate: 'Trung cấp',
+      advanced: 'Nâng cao',
+    };
+
+    function loadUsers() {
+      const users: User[] = JSON.parse(localStorage.getItem('blog_users') || '[]');
+      const tbody = document.getElementById('users-tbody') as HTMLElement;
+      const countEl = document.getElementById('user-count') as HTMLElement;
+
+      countEl.textContent = `${users.length} tài khoản đã đăng ký`;
+
+      if (users.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="5" class="empty-cell">Chưa có tài khoản nào</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = users.map((u, i) => `
+        <tr>
+          <td>${i + 1}</td>
+          <td>${u.username}</td>
+          <td>${u.email}</td>
+          <td>${levelLabels[u.level] || u.level}</td>
+          <td>${new Date(u.createdAt).toLocaleDateString('vi-VN', { year: 'numeric', month: 'short', day: 'numeric' })}</td>
+        </tr>
+      `).join('');
+    }
+
+    document.getElementById('export-btn')?.addEventListener('click', () => {
+      const users: User[] = JSON.parse(localStorage.getItem('blog_users') || '[]');
+      if (users.length === 0) {
+        alert('Không có dữ liệu để export');
+        return;
+      }
+
+      const headers = ['Username', 'Email', 'Level', 'Created At'];
+      const rows = users.map(u => [u.username, u.email, u.level, u.createdAt]);
+      const csv = [headers, ...rows].map(r => r.map(c => `"${c}"`).join(',')).join('\n');
+
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'blog_users.csv';
+      link.click();
+    });
+
+    loadUsers();
+  </script>
+
+  <style>
+    .dashboard-section {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    .dashboard-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 2rem;
+    }
+
+    .dashboard-card h1 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .dashboard-subtitle {
+      color: rgba(255, 255, 255, 0.6);
+      margin-bottom: 1.5rem;
+    }
+
+    .user-count {
+      font-size: 1.1rem;
+      color: #4ecdc4;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .table-container {
+      overflow-x: auto;
+      margin-bottom: 1rem;
+    }
+
+    .users-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+    }
+
+    .users-table th,
+    .users-table td {
+      padding: 0.75rem;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .users-table th {
+      background: rgba(78, 205, 196, 0.1);
+      color: #4ecdc4;
+      font-weight: 600;
+    }
+
+    .users-table tr:hover {
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .empty-cell {
+      text-align: center;
+      color: rgba(255, 255, 255, 0.5);
+      padding: 2rem;
+    }
+
+    .btn-secondary {
+      padding: 0.5rem 1rem;
+      border: 1px solid rgba(78, 205, 196, 0.5);
+      border-radius: 8px;
+      background: transparent;
+      color: #4ecdc4;
+      font-size: 0.875rem;
+      cursor: pointer;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(78, 205, 196, 0.1);
+    }
+  </style>
+</BaseLayout>

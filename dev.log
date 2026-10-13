@@ -1,0 +1,21 @@
+
+> blog@0.0.1 dev
+> astro dev
+
+[2m15:52:33[22m [34m[vite][39m connected.
+[2m15:52:33[22m [34m[types][39m Generated [2m1ms[22m
+[2m15:52:34[22m [34m[vite][39m connected.
+[2m15:52:34[22m [34m[content][39m Syncing content
+[2m15:52:34[22m [34m[content][39m Synced content
+[42m[1m astro [22m[49m [32mv7.3.5[39m [2mready in[22m 671 [2mms[22m
+[2m┃[22m Local    [36mhttp://localhost:4321/[39m
+[2m┃[22m Network  [2muse --host to expose[22m
+[2m15:52:34[22m [32mwatching for file changes...[39m
+[2m15:52:50[22m [34m[200][39m /register [2m15ms[22m
+[2m15:53:01[22m [34m[200][39m /login [2m7ms[22m
+[2m15:53:13[22m [34m[200][39m /dashboard [2m7ms[22m
+[2m15:53:41[22m [34m[200][39m /register [2m2ms[22m
+[2m15:53:41[22m [34m[200][39m /register [2m2ms[22m
+[33m[1m15:53:41[22m [WARN] [vite][39m [2m[console.warn] [22mTHREE.Clock: This module has been deprecated. Please use THREE.Timer instead.
+[2m15:54:48[22m [34m[200][39m /dashboard [2m2ms[22m
+[33m[1m15:54:48[22m [WARN] [vite][39m [2m[console.warn] [22mTHREE.Clock: This module has been deprecated. Please use THREE.Timer instead.

@@ -1,0 +1,198 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = 'Tạo tài khoản - 学中文';
+---
+
+<BaseLayout title={title}>
+  <section class="auth-section">
+    <div class="auth-card">
+      <h1>📝 Tạo tài khoản</h1>
+      <p class="auth-subtitle">Đăng ký để lưu tiến độ học tiếng Trung</p>
+
+      <form id="register-form" class="auth-form">
+        <div class="form-group">
+          <label for="username">Tên đăng nhập</label>
+          <input type="text" id="username" name="username" required minlength="3" placeholder="ít nhất 3 ký tự" />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required placeholder="email@example.com" />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Mật khẩu</label>
+          <input type="password" id="password" name="password" required minlength="6" placeholder="ít nhất 6 ký tự" />
+        </div>
+
+        <div class="form-group">
+          <label for="confirm-password">Xác nhận mật khẩu</label>
+          <input type="password" id="confirm-password" name="confirm-password" required placeholder="nhập lại mật khẩu" />
+        </div>
+
+        <div class="form-group">
+          <label for="level">Trình độ tiếng Trung</label>
+          <select id="level" name="level">
+            <option value="beginner">Mới bắt đầu</option>
+            <option value="elementary">Sơ cấp</option>
+            <option value="intermediate">Trung cấp</option>
+            <option value="advanced">Nâng cao</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn-primary">Tạo tài khoản</button>
+      </form>
+
+      <p class="auth-footer">
+        Đã có tài khoản? <a href="/login">Đăng nhập</a>
+      </p>
+    </div>
+  </section>
+
+  <script>
+    interface User {
+      username: string;
+      email: string;
+      password: string;
+      level: string;
+      createdAt: string;
+    }
+
+    const form = document.getElementById('register-form') as HTMLFormElement;
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const username = (document.getElementById('username') as HTMLInputElement).value.trim();
+      const email = (document.getElementById('email') as HTMLInputElement).value.trim();
+      const password = (document.getElementById('password') as HTMLInputElement).value;
+      const confirmPassword = (document.getElementById('confirm-password') as HTMLInputElement).value;
+      const level = (document.getElementById('level') as HTMLSelectElement).value;
+
+      // Validation
+      if (username.length < 3) {
+        alert('Tên đăng nhập phải có ít nhất 3 ký tự');
+        return;
+      }
+      if (password.length < 6) {
+        alert('Mật khẩu phải có ít nhất 6 ký tự');
+        return;
+      }
+      if (password !== confirmPassword) {
+        alert('Mật khẩu xác nhận không khớp');
+        return;
+      }
+
+      // Check if user already exists
+      const users: User[] = JSON.parse(localStorage.getItem('blog_users') || '[]');
+      if (users.find(u => u.username === username)) {
+        alert('Tên đăng nhập đã tồn tại');
+        return;
+      }
+      if (users.find(u => u.email === email)) {
+        alert('Email đã được đăng ký');
+        return;
+      }
+
+      // Create user
+      const newUser: User = {
+        username,
+        email,
+        password,
+        level,
+        createdAt: new Date().toISOString(),
+      };
+
+      users.push(newUser);
+      localStorage.setItem('blog_users', JSON.stringify(users));
+
+      // Auto login
+      localStorage.setItem('blog_current_user', JSON.stringify(newUser));
+
+      alert('Tạo tài khoản thành công!');
+      window.location.href = '/dashboard';
+    });
+  </script>
+
+  <style>
+    .auth-section {
+      max-width: 480px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    .auth-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 2rem;
+    }
+
+    .auth-card h1 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .auth-subtitle {
+      color: rgba(255, 255, 255, 0.6);
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.25rem;
+      font-size: 0.875rem;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff;
+      font-size: 1rem;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: #4ecdc4;
+    }
+
+    .btn-primary {
+      width: 100%;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #4ecdc4, #44a08d);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 0.5rem;
+    }
+
+    .btn-primary:hover {
+      opacity: 0.9;
+    }
+
+    .auth-footer {
+      text-align: center;
+      margin-top: 1rem;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .auth-footer a {
+      color: #4ecdc4;
+      text-decoration: none;
+    }
+  </style>
+</BaseLayout>

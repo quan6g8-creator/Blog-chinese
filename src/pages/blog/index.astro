@@ -1,26 +1,164 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { Astro } from 'astro';
 
 const posts = (await getCollection('blog'))
   .filter(p => !p.data.draft)
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const url = new URL(Astro.url);
+const tag = url.searchParams.get('tag');
+
+const filtered = tag
+  ? posts.filter(p => p.data.tags.includes(tag))
+  : posts;
+
+const tags = [...new Set(posts.flatMap(p => p.data.tags))];
 ---
 
-<BaseLayout title="Bài viết - 学中文">
-  <h1 style="margin-bottom:1.5rem;">📝 Tất cả bài viết</h1>
-  {posts.map(post => (
-    <article class="post-card">
-      <h2 class="post-title"><a href={`/blog/${post.id.replace(/\.md$/, '')}`}>{post.data.title}</a></h2>
-      <div class="post-meta">
-        {post.data.pubDate.toLocaleDateString('vi-VN', { year: 'numeric', month: 'long', day: 'numeric' })}
+<BaseLayout title={tag ? `Bài viết về ${tag} - 学中文` : 'Bài viết - 学中文'}>
+  {tag ? (
+    <section class="section">
+      <div class="section-header">
+        <span class="kicker">📂 Lọc</span>
+        <h2>Bài viết về {tag}</h2>
       </div>
-      <p>{post.data.description}</p>
-      {post.data.tags.length > 0 && (
-        <div class="tags">
-          {post.data.tags.map(tag => <span class="tag">{tag}</span>)}
+
+      {filtered.length > 0 ? (
+        <div class="directory">
+          {filtered.map(post => (
+            <article class="post-card">
+              <h2 class="post-title"><a href={`/blog/${post.id.replace(/\\.md$/, '')}`}>{post.data.title}</a></h2>
+              <div class="post-meta">{post.data.pubDate.toLocaleDateString('vi-VN', { year: 'numeric', month: 'long', day: 'numeric' })}</div>
+              <p>{post.data.description}</p>
+              {post.data.tags.length > 0 && (
+                <div class="tags">
+                  {post.data.tags.map(t => <span class="tag">{t}</span>)}
+                </div>
+              )}
+            </article>
+          ))}
+        </div>
+      ) : (
+        <div class="alert alert-warning">
+          <p>Không có bài viết nào cho chủ đề <strong>{tag}</strong>.</p>
         </div>
       )}
-    </article>
-  ))}
+    </section>
+  ) : (
+    <>
+      <section class="section">
+        <div class="section-header">
+          <span class="kicker">Hôm nay</span>
+          <h2>Học từ vựng nhanh</h2>
+          <p>
+            Hôm nay học 10 từ vựng tiếng Trung về chào hỏi. Rất hữu ích khi đi
+            du lịch hoặc giao tiếp cơ bản.
+          </p>
+        </div>
+
+        <div class="promo-grid">
+          <article class="promo-card">
+            <div class="img">
+              <img
+                src="/images/calligraphy.jpg"
+                alt="Học chữ Hán"
+                loading="lazy"
+              />
+            </div>
+            <div class="info">
+              <h3>10 từ vựng tiếng Trung cơ bản</h3>
+              <p>
+                Học 10 từ vựng tiếng Trung phổ biến nhất về chào hỏi, kèm phiên
+                âm và ví dụ minh họa.
+              </p>
+              <div class="meta">
+                <span class="price">5 phút đọc</span>
+                <span class="badge badge-sale">Mới</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="promo-card">
+            <div class="img">
+              <img
+                src="/images/forbidden-city.jpg"
+                alt="Trung Hoa văn hóa"
+                loading="lazy"
+              />
+            </div>
+            <div class="info">
+              <h3>Khám phá Trung Hoa</h3>
+              <p>
+                Giới thiệu tổng quan về đất nước Trung Hoa: lịch sử, văn hóa,
+                ẩm thực và điểm du lịch.
+              </p>
+              <div class="meta">
+                <span class="price">10 phút đọc</span>
+                <span class="badge badge-new">Cũ</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="promo-card">
+            <div class="img">
+              <img
+                src="/images/dumplings.jpg"
+                alt="Âm thực Trung Hoa"
+                loading="lazy"
+              />
+            </div>
+            <div class="info">
+              <h3>Âm thực Trung Hoa</h3>
+              <p>
+                Phỏng vấn 8 phong cách ẩm thực và món ngon nhất mỗi vùng.
+              </p>
+              <div class="meta">
+                <span class="price">8 phút đọc</span>
+                <span class="badge badge-sale">Sale</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="promo-card">
+            <div class="img">
+              <img
+                src="/images/calligraphy-left.jpg"
+                alt="Thư pháp Trung Hoa"
+                loading="lazy"
+              />
+            </div>
+            <div class="info">
+              <h3>Thư pháp Trung Hoa</h3>
+              <p>
+                Hướng dẫn cách học lâu lâu bằng tay, từ gõ phím đến viết chữ.
+              </p>
+              <div class="meta">
+                <span class="price">7 phút đọc</span>
+                <span class="badge badge-new">Mới</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section bg-white border-y">
+        <div class="section-header">
+          <span class="kicker">Phân loại</span>
+          <h2>Danh mục bài học</h2>
+        </div>
+
+        <div class="directory">
+          {tags.map(t => (
+            <a href={`/blog?tag=${encodeURIComponent(t)}`} class="directory-item">
+              <span class="icon">📖</span>
+              <h3>{t}</h3>
+              <p>Hồ sơ bài viết về chủ đề này</p>
+            </a>
+          ))}
+        </div>
+      </section>
+    </>
+  )}
 </BaseLayout>

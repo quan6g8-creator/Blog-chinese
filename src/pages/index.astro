@@ -1,33 +1,216 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-
-const posts = (await getCollection('blog'))
-  .filter(p => !p.data.draft)
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
-<BaseLayout title="学中文 - Blog học tiếng Trung">
+<BaseLayout title="Trang chủ - 学中文">
   <section class="hero">
-    <h1>📚 学中文</h1>
-    <p>Blog học tiếng Trung cho người mới bắt đầu</p>
+    <div class="hero-badge">
+      <span>🚀</span>
+      Đường dẫn tiếng Trung cho người mới
+    </div>
+
+    <h1>Học tiếng Trung mỗi ngày</h1>
+    <p>
+      Blog học tiếng Trung cho người mới bắt đầu, tập trung vào từ vựng,
+      ngữ pháp, kĩ năng nghe và văn hóa.
+    </p>
+
+    <form class="hero-search" method="get" action="/blog">
+      <input type="text" name="q" placeholder="Tìm từ, từ vựng, ngữ pháp..." />
+      <button type="submit">Tìm</button>
+    </form>
   </section>
 
-  <section>
-    <h2 style="margin-bottom:1rem;">Bài viết mới nhất</h2>
-    {posts.map(post => (
-      <article class="post-card">
-        <h2 class="post-title"><a href={`/blog/${post.id.replace(/\.md$/, '')}`}>{post.data.title}</a></h2>
-        <div class="post-meta">
-          {post.data.pubDate.toLocaleDateString('vi-VN', { year: 'numeric', month: 'long', day: 'numeric' })}
+  <section class="section">
+    <div class="section-header">
+      <span class="kicker">Hôm nay</span>
+      <h2>Học từ vựng nhanh</h2>
+      <p>
+        Hôm nay học 10 từ vựng tiếng Trung về chào hỏi. Rất hữu ích khi đi
+        du lịch hoặc giao tiếp cơ bản.
+      </p>
+    </div>
+
+    <div class="promo-grid">
+      <article class="promo-card">
+        <div class="img">
+          <img
+            src="/images/calligraphy.jpg"
+            alt="Học chữ Hán"
+            loading="lazy"
+          />
         </div>
-        <p>{post.data.description}</p>
-        {post.data.tags.length > 0 && (
-          <div class="tags">
-            {post.data.tags.map(tag => <span class="tag">{tag}</span>)}
+        <div class="info">
+          <h3>10 từ vựng tiếng Trung cơ bản</h3>
+          <p>
+            Học 10 từ vựng tiếng Trung phổ biến nhất về chào hỏi, kèm phiên
+            âm và ví dụ minh họa.
+          </p>
+          <div class="meta">
+            <span class="price">5 phút đọc</span>
+            <span class="badge badge-sale">Mới</span>
           </div>
-        )}
+        </div>
       </article>
-    ))}
+
+      <article class="promo-card">
+        <div class="img">
+          <img
+            src="/images/forbidden-city.jpg"
+            alt="Trung Hoa văn hóa"
+            loading="lazy"
+          />
+        </div>
+        <div class="info">
+          <h3>Khám phá Trung Hoa</h3>
+          <p>
+            Giới thiệu tổng quan về đất nước Trung Hoa: lịch sử, văn hóa,
+            ẩm thực và điểm du lịch.
+          </p>
+          <div class="meta">
+            <span class="price">10 phút đọc</span>
+            <span class="badge badge-new">Cũ</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="promo-card">
+        <div class="img">
+          <img
+            src="/images/dumplings.jpg"
+            alt="Âm thực Trung Hoa"
+            loading="lazy"
+          />
+        </div>
+        <div class="info">
+          <h3>Âm thực Trung Hoa</h3>
+          <p>
+            Phỏng vấn 8 phong cách ẩm thực và món ngon nhất mỗi vùng.
+          </p>
+          <div class="meta">
+            <span class="price">8 phút đọc</span>
+            <span class="badge badge-sale">Sale</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="promo-card">
+        <div class="img">
+          <img
+            src="/images/calligraphy-left.jpg"
+            alt="Thư pháp Trung Hoa"
+            loading="lazy"
+          />
+        </div>
+        <div class="info">
+          <h3>Thư pháp Trung Hoa</h3>
+          <p>
+            Hướng dẫn cách học lâu lâu bằng tay, từ gõ phím đến viết chữ.
+          </p>
+          <div class="meta">
+            <span class="price">7 phút đọc</span>
+            <span class="badge badge-new">Mới</span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section bg-white border-y">
+    <div class="section-header">
+      <span class="kicker">Phân loại</span>
+      <h2>Danh mục bài học</h2>
+    </div>
+
+    <div class="directory">
+      <a href="/blog?tag=ngữ pháp" class="directory-item">
+        <span class="icon">📖</span>
+        <h3>Ngữ pháp</h3>
+        <p>Cấu trúc câu, trợ từ, trật tự từ</p>
+      </a>
+      <a href="/blog?tag=từ vựng" class="directory-item">
+        <span class="icon">📝</span>
+        <h3>Từ vựng</h3>
+        <p>Theo chủ đề, từ cơ bản đến nâng cao</p>
+      </a>
+      <a href="/blog?tag=kinh nghiệm" class="directory-item">
+        <span class="icon">💡</span>
+        <h3>Kinh nghiệm</h3>
+        <p>Phương pháp học, tự học 3 tháng đầu</p>
+      </a>
+      <a href="/blog?tag=văn hóa" class="directory-item">
+        <span class="icon">🇨🇳</span>
+        <h3>Văn hóa</h3>
+        <p>Lịch sử, ẩm thực, du lịch, lễ hội</p>
+      </a>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-header">
+      <span class="kicker">Lộ trình</span>
+      <h2>Học 3 tháng đầu</h2>
+      <p>
+        Bắt đầu từ đâu, nên học thứ gì, và cách đi để tiến bộ nhanh.
+      </p>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h3>Học bảng chữ cái Hán ngữ (Pinyin)</h3>
+          <p>
+            Là bước quan trọng nhất. Pinyin giúp bạn đọc phát âm chính
+            xác trước khi học chữ.
+          </p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h3>Học từ vựng theo chủ đề</h3>
+          <p>
+            Đừng học từ rời rạc. Học theo chủ đề: gia đình, thực phẩm,
+            thời gian, mẹo…
+          </p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h3>Nghe mỗi ngày</h3>
+          <p>
+            Nghe là chìa khóa để phát âm. Nghe podcast, nhạc, phim
+            tiếng Trung mỗi ngày.
+          </p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <h3>Nói từ ngày đầu</h3>
+          <p>
+            Đừng đợi “đủ từ vựng” mới nói. Hãy nói ngay cả khi chỉ
+            biết vài từ.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="cta">
+      <h2>Bạn có muốn học nhanh hơn?</h2>
+      <p>
+        Nhận lộ trình học 30 ngày và các bài tập thực hành mỗi ngày.
+      </p>
+      <form method="get" action="/register">
+        <button class="btn btn-lg">Đăng ký lộ trình</button>
+      </form>
+    </div>
   </section>
 </BaseLayout>

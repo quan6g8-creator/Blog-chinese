@@ -31,35 +31,42 @@ const title = 'Đăng nhập - 学中文';
   </section>
 
   <script>
-    interface User {
-      username: string;
-      email: string;
-      password: string;
-      level: string;
-      createdAt: string;
-    }
-
-    const form = document.getElementById('login-form') as HTMLFormElement;
-
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-
-      const username = (document.getElementById('username') as HTMLInputElement).value.trim();
-      const password = (document.getElementById('password') as HTMLInputElement).value;
-
-      const users: User[] = JSON.parse(localStorage.getItem('blog_users') || '[]');
-      const user = users.find(u => u.username === username && u.password === password);
-
-      if (!user) {
-        alert('Tên đăng nhập hoặc mật khẩu không đúng');
-        return;
+      interface User {
+        username: string;
+        email: string;
+        password: string;
+        level: string;
+        createdAt: string;
       }
 
-      localStorage.setItem('blog_current_user', JSON.stringify(user));
-      alert('Đăng nhập thành công!');
-      window.location.href = '/dashboard';
-    });
-  </script>
+      const form = document.getElementById('login-form') as HTMLFormElement;
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const username = (document.getElementById('username') as HTMLInputElement).value.trim();
+        const password = (document.getElementById('password') as HTMLInputElement).value;
+
+        try {
+          const res = await fetch('/api/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, password })
+          });
+          const data = await res.json();
+          if (!res.ok) {
+            alert(data.error || 'Đăng nhập thất bại');
+            return;
+          }
+          localStorage.setItem('blog_token', data.token);
+          localStorage.setItem('blog_user', JSON.stringify(data.user));
+          alert('Đăng nhập thành công!');
+          window.location.href = '/dashboard';
+        } catch (err) {
+          alert('Lỗi kết nối với máy chủ');
+        }
+      });
+    </script>
 
   <style>
     .auth-section {
